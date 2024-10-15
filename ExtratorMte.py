@@ -37,7 +37,7 @@ for i in range(1, total_paginas + 1):
     parsed_response = extrator.enviar_requisicao(data)
     rows_with_indice = parsed_response.find_all('tr', {'indice': True})
 
-    with open('indices.txt', 'a') as file:
+    with open('indicesAL.txt', 'a') as file:
         for row in rows_with_indice:
             indice_value = row['indice']
             file.write(indice_value + '\n')

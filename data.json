@@ -1,0 +1,31 @@
+{
+    "nrCnpj": "",
+    "nrCei": "",
+    "noRazaoSocial": "",
+    "dsCategoria": "",
+    "tpRequerimento": [
+        "acordo",
+        "acordoColetivoEspecificoPPE",
+        "acordoColetivoEspecificoDomingosFeriados",
+        "convencao",
+        "termoAditivoAcordo",
+        "termoAditivoConvecao",
+        "termoAditivoAcordoEspecificoPPE",
+        "termoAditivoAcordoEspecificoDomingoFeriado"
+    ],
+    "tpVigencia": "2",
+    "sgUfDeRegistro": "AL",
+    "dtInicioRegistro": "",
+    "dtFimRegistro": "",
+    "dtInicioVigenciaInstrumentoColetivo": "",
+    "dtFimVigenciaInstrumentoColetivo": "",
+    "tpAbrangencia": "Todos+os+tipos",
+    "ufsAbrangidasTotalmente": "AL",
+    "cdMunicipiosAbrangidos": "",
+    "cdGrupo": "",
+    "cdSubGrupo": "",
+    "noTituloClausula": "",
+    "utilizarSiracc": "",
+    "pagina": "1",
+    "qtdTotalRegistro": "4100"
+}
