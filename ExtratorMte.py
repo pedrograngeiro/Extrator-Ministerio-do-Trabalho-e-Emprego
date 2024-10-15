@@ -17,11 +17,13 @@ url = "https://www3.mte.gov.br/sistemas/mediador/ConsultarInstColetivo/getConsul
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
+with open('data.json', 'r') as file:
+    data = json.load(file)
 
-for i in range(1, 4):
-    with open('data.json', 'r') as file:
-        data = json.load(file)
-
+total_registros = int(data['qtdTotalRegistro'])
+total_paginas = total_registros // 10 + 1
+# Loop para percorrer todas as páginas
+for i in range(1, total_paginas + 1):
     # Alterar o valor do atributo "pagina"
     data['pagina'] = f"{i}"
 
