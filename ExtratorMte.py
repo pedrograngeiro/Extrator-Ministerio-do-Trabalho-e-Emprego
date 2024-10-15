@@ -30,6 +30,8 @@ extrator = ExtratorMte(request_factory, parsing_strategy)
 parsed_response = extrator.enviar_requisicao(data)
 rows_with_indice = parsed_response.find_all('tr', {'indice': True})
 
-for row in rows_with_indice:
-    indice_value = row['indice']
-    print(indice_value)
+with open('indices.txt', 'a') as file:
+    for row in rows_with_indice:
+        indice_value = row['indice']
+        file.write(indice_value + '\n')
+
