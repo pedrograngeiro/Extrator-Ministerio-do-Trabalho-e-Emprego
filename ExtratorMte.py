@@ -1,3 +1,4 @@
+import json
 from ParsingStrategy import BeautifulSoupStrategy
 from RequestFactory import RequestFactory
 
@@ -16,37 +17,9 @@ url = "https://www3.mte.gov.br/sistemas/mediador/ConsultarInstColetivo/getConsul
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
-data = {
-    "nrCnpj": "",
-    "nrCei": "",
-    "noRazaoSocial": "",
-    "dsCategoria": "",
-    "tpRequerimento": [
-        "acordo",
-        "acordoColetivoEspecificoPPE",
-        "acordoColetivoEspecificoDomingosFeriados",
-        "convencao",
-        "termoAditivoAcordo",
-        "termoAditivoConvecao",
-        "termoAditivoAcordoEspecificoPPE",
-        "termoAditivoAcordoEspecificoDomingoFeriado"
-    ],
-    "tpVigencia": "2",
-    "sgUfDeRegistro": "AC",
-    "dtInicioRegistro": "",
-    "dtFimRegistro": "",
-    "dtInicioVigenciaInstrumentoColetivo": "",
-    "dtFimVigenciaInstrumentoColetivo": "",
-    "tpAbrangencia": "Todos+os+tipos",
-    "ufsAbrangidasTotalmente": "AC",
-    "cdMunicipiosAbrangidos": "",
-    "cdGrupo": "",
-    "cdSubGrupo": "",
-    "noTituloClausula": "",
-    "utilizarSiracc": "",
-    "pagina": "1",
-    "qtdTotalRegistro": "665"
-}
+
+with open('data.json', 'r') as file:
+    data = json.load(file)
 
 # Instanciação
 request_factory = RequestFactory(url, headers)
@@ -55,4 +28,8 @@ extrator = ExtratorMte(request_factory, parsing_strategy)
 
 # Envio da requisição e parsing da resposta
 parsed_response = extrator.enviar_requisicao(data)
-print(parsed_response)
+rows_with_indice = parsed_response.find_all('tr', {'indice': True})
+
+for row in rows_with_indice:
+    indice_value = row['indice']
+    print(indice_value)
