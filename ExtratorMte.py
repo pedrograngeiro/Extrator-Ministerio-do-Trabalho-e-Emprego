@@ -18,20 +18,25 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
 
-with open('data.json', 'r') as file:
-    data = json.load(file)
+for i in range(1, 4):
+    with open('data.json', 'r') as file:
+        data = json.load(file)
 
-# Instanciação
-request_factory = RequestFactory(url, headers)
-parsing_strategy = BeautifulSoupStrategy()
-extrator = ExtratorMte(request_factory, parsing_strategy)
+    # Alterar o valor do atributo "pagina"
+    data['pagina'] = f"{i}"
 
-# Envio da requisição e parsing da resposta
-parsed_response = extrator.enviar_requisicao(data)
-rows_with_indice = parsed_response.find_all('tr', {'indice': True})
 
-with open('indices.txt', 'a') as file:
-    for row in rows_with_indice:
-        indice_value = row['indice']
-        file.write(indice_value + '\n')
+    # Instanciação
+    request_factory = RequestFactory(url, headers)
+    parsing_strategy = BeautifulSoupStrategy()
+    extrator = ExtratorMte(request_factory, parsing_strategy)
+
+    # Envio da requisição e parsing da resposta
+    parsed_response = extrator.enviar_requisicao(data)
+    rows_with_indice = parsed_response.find_all('tr', {'indice': True})
+
+    with open('indices.txt', 'a') as file:
+        for row in rows_with_indice:
+            indice_value = row['indice']
+            file.write(indice_value + '\n')
 
