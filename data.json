@@ -14,18 +14,18 @@
         "termoAditivoAcordoEspecificoDomingoFeriado"
     ],
     "tpVigencia": "2",
-    "sgUfDeRegistro": "AL",
+    "sgUfDeRegistro": "",
     "dtInicioRegistro": "",
     "dtFimRegistro": "",
     "dtInicioVigenciaInstrumentoColetivo": "",
     "dtFimVigenciaInstrumentoColetivo": "",
     "tpAbrangencia": "Todos+os+tipos",
-    "ufsAbrangidasTotalmente": "AL",
+    "ufsAbrangidasTotalmente": "",
     "cdMunicipiosAbrangidos": "",
     "cdGrupo": "",
     "cdSubGrupo": "",
     "noTituloClausula": "",
     "utilizarSiracc": "",
     "pagina": "1",
-    "qtdTotalRegistro": "4100"
+    "qtdTotalRegistro": "77108"
 }
