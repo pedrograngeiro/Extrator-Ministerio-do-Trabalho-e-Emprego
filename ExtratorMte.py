@@ -22,10 +22,14 @@ with open('data.json', 'r') as file:
 
 total_registros = int(data['qtdTotalRegistro'])
 total_paginas = total_registros // 10 + 1
+estado = 'MG'
 # Loop para percorrer todas as páginas
 for i in range(1, total_paginas + 1):
     # Alterar o valor do atributo "pagina"
+    data['sgUfDeRegistro'] = estado
+    data['ufsAbrangidasTotalmente'] = estado
     data['pagina'] = f"{i}"
+    print(f"Extraindo dados da página {i} de {total_paginas}...")
 
 
     # Instanciação
@@ -34,10 +38,16 @@ for i in range(1, total_paginas + 1):
     extrator = ExtratorMte(request_factory, parsing_strategy)
 
     # Envio da requisição e parsing da resposta
-    parsed_response = extrator.enviar_requisicao(data)
-    rows_with_indice = parsed_response.find_all('tr', {'indice': True})
+    try:
+        parsed_response = extrator.enviar_requisicao(data)
+        rows_with_indice = parsed_response.find_all('tr', {'indice': True})
+    except Exception as e:
+        print(f"Erro ao extrair dados da página {i}: {e}")
+        continue
 
-    with open('indicesAL.txt', 'a') as file:
+    # Salvar os índices em um arquivo
+    nomeArquivo = ("indices{}.txt").format(estado)
+    with open(nomeArquivo, 'a') as file:
         for row in rows_with_indice:
             indice_value = row['indice']
             file.write(indice_value + '\n')
